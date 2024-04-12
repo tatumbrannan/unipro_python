@@ -1,0 +1,118 @@
+models:
+  - name: dim_cat_group
+
+  - name: dim_date
+
+  - name: dim_department
+
+  - name: dim_duns_xref
+
+  - name: dim_gtin
+
+  - name: dim_headquarters
+
+  - name: dim_member_branches
+
+  - name: dim_supplier
+
+  - name: po_fact
+    description: "PO history data."
+    columns:
+      - name: po_fact_hash_key
+        description: "{{ doc('autogen__po_fact_xfrm__po_fact_hash_key')}}"
+
+      - name: member_duns_number
+        description: "{{ doc('autogen__po_fact_xfrm__member_duns_number')}}"
+
+      - name: member_duns_number_4
+        description: "{{ doc('autogen__po_fact_xfrm__member_duns_number_4')}}"
+
+      - name: purchase_supplier_duns_number
+        description: "{{ doc('autogen__po_fact_xfrm__purchase_supplier_duns_number')}}"
+
+      - name: purchase_supplier_duns_number_4
+        description: "{{ doc('autogen__po_fact_xfrm__purchase_supplier_duns_number_4')}}"
+
+      - name: member_supplier_number
+        description: "{{ doc('autogen__po_fact_xfrm__member_supplier_number')}}"
+
+      - name: invoice_number
+        description: "{{ doc('autogen__po_fact_xfrm__invoice_number')}}"
+
+      - name: invoice_date
+        description: "{{ doc('autogen__po_fact_xfrm__invoice_date')}}"
+
+      - name: upc_pack_ind
+        description: "{{ doc('autogen__po_fact_xfrm__upc_pack_ind')}}"
+
+      - name: upc_number_system
+        description: "{{ doc('autogen__po_fact_xfrm__upc_number_system')}}"
+
+      - name: upc_mfg_number
+        description: "{{ doc('autogen__po_fact_xfrm__upc_mfg_number')}}"
+
+      - name: upc_item_number
+        description: "{{ doc('autogen__po_fact_xfrm__upc_item_number')}}"
+
+      - name: upc_check_digit
+        description: "{{ doc('autogen__po_fact_xfrm__upc_check_digit')}}"
+
+      - name: qty_shipped_member
+        description: "{{ doc('autogen__po_fact_xfrm__qty_shipped_member')}}"
+
+      - name: uom
+        description: "{{ doc('autogen__po_fact_xfrm__uom')}}"
+
+      - name: net_weight
+        description: "{{ doc('autogen__po_fact_xfrm__net_weight')}}"
+
+      - name: purchase_amt
+        description: "{{ doc('autogen__po_fact_xfrm__purchase_amt')}}"
+
+      - name: freight_included_ind
+        description: "{{ doc('autogen__po_fact_xfrm__freight_included_ind')}}"
+
+      - name: item_exception_ind
+        description: "{{ doc('autogen__po_fact_xfrm__item_exception_ind')}}"
+
+      - name: comment
+        description: "{{ doc('autogen__po_fact_xfrm__comment')}}"
+
+      - name: member_department
+        description: "{{ doc('autogen__po_fact_xfrm__member_department')}}"
+
+      - name: member_po_number
+        description: "{{ doc('autogen__po_fact_xfrm__member_po_number')}}"
+
+      - name: gtin
+        description: "{{ doc('autogen__po_fact_xfrm__gtin')}}"
+
+      - name: mfg_item_number
+        description: "{{ doc('autogen__po_fact_xfrm__mfg_item_number')}}"
+
+      - name: spreadsheet_row
+        description: "{{ doc('autogen__po_fact_xfrm__spreadsheet_row')}}"
+
+      - name: processed_flag
+        description: "{{ doc('autogen__po_fact_xfrm__processed_flag')}}"
+
+      - name: date_created
+        description: "{{ doc('autogen__po_fact_xfrm__date_created')}}"
+
+      - name: time_created
+        description: "{{ doc('autogen__po_fact_xfrm__time_created')}}"
+
+      - name: userid_created
+        description: "{{ doc('autogen__po_fact_xfrm__userid_created')}}"
+
+      - name: program_created
+        description: "{{ doc('autogen__po_fact_xfrm__program_created')}}"
+
+      - name: date_time_processed
+        description: "{{ doc('autogen__po_fact_xfrm__date_time_processed')}}"
+
+      - name: userid_processed
+        description: "{{ doc('autogen__po_fact_xfrm__userid_processed')}}"
+
+      - name: program_processed
+        description: "{{ doc('autogen__po_fact_xfrm__program_processed')}}"
