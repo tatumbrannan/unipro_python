@@ -1,0 +1,365 @@
+models:
+  - name: cat_group_dimension
+    columns:
+      - name: approved_record_flag
+        tests:
+          - not_null
+
+      - name: catcategory_name
+        tests:
+          - not_null
+
+      - name: catcategory_nbr
+        tests:
+          - not_null
+
+      - name: category_key
+        tests:
+          - not_null
+          - unique
+
+      - name: catfamily_name
+        tests:
+          - not_null
+
+      - name: catfamily_nbr
+        tests:
+          - not_null
+
+      - name: catline_name
+        tests:
+          - not_null
+
+      - name: catline_nbr
+        tests:
+          - not_null
+
+      - name: edw_create_timestamp
+        tests:
+          - not_null
+
+      - name: edw_update_timestamp
+        tests:
+          - not_null
+
+  - name: date_dimension
+    columns:
+      - name: calendar_date
+        tests:
+          - not_null
+
+      - name: calendar_day_number
+        tests:
+          - not_null
+
+      - name: calendar_month_day_number
+        tests:
+          - not_null
+
+      - name: calendar_month_end_flag
+        tests:
+          - not_null
+
+      - name: calendar_month_name
+        tests:
+          - not_null
+
+      - name: calendar_month_number
+        tests:
+          - not_null
+
+      - name: calendar_quarter_end_flag
+        tests:
+          - not_null
+
+      - name: calendar_quarter_number
+        tests:
+          - not_null
+
+      - name: calendar_week_day_name
+        tests:
+          - not_null
+
+      - name: calendar_week_day_number
+        tests:
+          - not_null
+
+      - name: calendar_week_number
+        tests:
+          - not_null
+
+      - name: calendar_year_end_flag
+        tests:
+          - not_null
+
+      - name: calendar_year
+        tests:
+          - not_null
+
+      - name: calendar_yearmonth
+        tests:
+          - not_null
+
+      - name: calendar_yearquarter
+        tests:
+          - not_null
+
+      - name: calendar_yearweek
+        tests:
+          - not_null
+
+      - name: date_key
+        tests:
+          - not_null
+          - unique
+
+      - name: date_type
+        tests:
+          - not_null
+
+  - name: department_dimension
+    columns:
+      - name: approved_record_flag
+        tests:
+          - not_null
+
+      - name: dept_code
+        tests:
+          - not_null
+
+      - name: dept_key
+        tests:
+          - not_null
+          - unique
+
+      - name: dept_name
+        tests:
+          - not_null
+
+      - name: edw_create_timestamp
+        tests:
+          - not_null
+
+      - name: edw_update_timestamp
+        tests:
+          - not_null
+
+  - name: duns_xref
+
+  - name: gtin_dimension
+    columns:
+      - name: edw_update_timestamp
+        tests:
+          - not_null
+
+      - name: gtin_key
+        tests:
+          - not_null
+          - unique
+
+  - name: headquarters_dimension
+    columns:
+      - name: edw_create_timestamp
+        tests:
+          - not_null
+
+      - name: edw_update_timestamp
+        tests:
+          - not_null
+
+      - name: head_quarters_key
+        tests:
+          - not_null
+          - unique
+
+      - name: head_quarters_branch
+        tests:
+          - not_null
+
+      - name: head_quarters_nbr
+        tests:
+          - not_null
+
+  - name: member_branches_dimension
+    columns:
+      - name: edw_create_timestamp
+        tests:
+          - not_null
+
+      - name: edw_update_timestamp
+        tests:
+          - not_null
+
+      - name: head_quarters_key
+        tests:
+          - not_null
+
+      - name: mem_brch_nbr
+        tests:
+          - not_null
+
+      - name: mem_nbr
+        tests:
+          - not_null
+
+      - name: mem_status
+        tests:
+          - not_null
+
+      - name: member_key
+        tests:
+          - not_null
+          - unique
+
+  - name: supplier_dimension
+    columns:
+      - name: approved_record_flag
+        tests:
+          - not_null
+
+      - name: edw_create_timestamp
+        tests:
+          - not_null
+
+      - name: edw_update_timestamp
+        tests:
+          - not_null
+
+      - name: supp_addr_1
+        tests:
+          - not_null
+
+      - name: supp_addr_2
+        tests:
+          - not_null
+
+      - name: supp_city
+        tests:
+          - not_null
+
+      - name: supp_key
+        tests:
+          - not_null
+          - unique
+
+      - name: supp_name
+        tests:
+          - not_null
+
+      - name: supp_nbr
+        tests:
+          - not_null
+
+      - name: supp_state
+        tests:
+          - not_null
+
+      - name: supp_zip
+        tests:
+          - not_null
+
+  - name: history
+    description: "PO history data."
+    columns:
+      - name: member_duns_number
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sourced from file column: EDDUDS"
+        tests:
+          - not_null
+
+      - name: member_duns_number_4
+        description: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Sourced from file column: EDDUD4"
+        tests:
+          - not_null
+
+      - name: purchase_supplier_duns_number
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sourced from file column: EDDUSU"
+
+      - name: purchase_supplier_duns_number_4
+        description: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Sourced from file column: EDDUS4"
+
+      - name: member_supplier_number
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sourced from file column: EDSUP"
+
+      - name: invoice_number
+        description: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Sourced from file column: EDINV"
+
+      - name: invoice_date
+        description: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Sourced from file column: EDINVD"
+
+      - name: upc_pack_ind
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sourced from file column: EDUPC1"
+
+      - name: upc_number_system
+        description: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Sourced from file column: EDUPC2"
+
+      - name: upc_mfg_number
+        description: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Sourced from file column: EDUPC3"
+
+      - name: upc_item_number
+        description: "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sourced from file column: EDUPC4"
+
+      - name: upc_check_digit
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sourced from file column: EDUPC5"
+
+      - name: qty_shipped_member
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sourced from file column: EDQTY"
+
+      - name: uom
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sourced from file column: EDUOM"
+
+      - name: net_weight
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sourced from file column: EDNETW"
+
+      - name: purchase_amt
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sourced from file column: EDAMT"
+
+      - name: freight_included_ind
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sourced from file column: EDFRTF"
+
+      - name: item_exception_ind
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sourced from file column: EDEXCF"
+        tests:
+          - accepted_values:
+              values: [1, 2] #null by default is an accepted value, if you want the column to be not null, add the additional test
+
+      - name: comment
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sourced from file column: EDMREF"
+
+      - name: member_department
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sourced from file column: EDCATG"
+
+      - name: member_po_number
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sourced from file column: EDMPO"
+
+      - name: gtin
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sourced from file column: EDGTIN"
+
+      - name: mfg_item_number
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sourced from file column: EDMFID"
+
+      - name: spreadsheet_row
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sourced from file column: EDROW"
+
+      - name: processed_flag
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sourced from file column: EDPROC"
+
+      - name: date_created
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sourced from file column: EDDATE"
+
+      - name: time_created
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sourced from file column: EDTIME"
+
+      - name: userid_created
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sourced from file column: EDUSER"
+
+      - name: program_created
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sourced from file column: EDPGM"
+
+      - name: date_time_processed
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sourced from file column: EDDATP and EDTIMP"
+
+      - name: userid_processed
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sourced from file column: EDUSEP"
+
+      - name: program_processed
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sourced from file column: EDPGMP"

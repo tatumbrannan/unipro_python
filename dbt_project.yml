@@ -8,6 +8,7 @@ config-version: 2
 require-dbt-version: '>=1.4.5'
 
 profile: 'unipro_python'
+
 # These configurations specify where dbt should look for different types of files.
 # The `model-paths` config, for example, states that models in this project can be
 # found in the "models/" directory. You probably won't need to change these!
@@ -27,6 +28,10 @@ vars:
   schema_name: dbt_tbrannan
 
 models:
+  +persist_docs:
+        relation: true
+        columns: true
+
   staging:
     +schema: staging
     +materialized: table
@@ -38,10 +43,3 @@ models:
   reporting:
     +schema: reporting_star
     +materialized: table
-
-
-# seeds:
-#   my_seed:
-#     +persist_docs:
-#       relation: true
-#       columns: true
