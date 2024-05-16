@@ -1,6 +1,6 @@
 # Project name + version 
 name: 'unipro_python'
-version: '1.0.0'
+version: '1.3.0'
 config-version: 2
 
 # This setting will set a helpful error message for user that are attempting to run
@@ -17,6 +17,8 @@ test-paths: ["tests"]
 seed-paths: ["seeds"]
 macro-paths: ["macros"]
 
+# target-path, clean-targets, vars, and models configurations go here
+
 target-path: "target"  # directory which will store compiled SQL files
 clean-targets:         # directories to be removed by `dbt clean`
   - "target"
@@ -26,6 +28,21 @@ clean-targets:         # directories to be removed by `dbt clean`
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
 vars:
   schema_name: dbt_tbrannan
+  SMTP_SERVER: smtp.gmail.com
+  SENDER_EMAIL: tatum.brannan@redpillanalytics.com
+  RECIPIENT_EMAIL: tatum.brannan@redpillanalytics.com
+  SMTP_PORT: 587
+  SMTP_USERNAME: tatum.brannan
+  SMTP_PASSWORD: Doodletoot1
+  SNOWFLAKE_USERNAME: tatumbrannan
+  SNOWFLAKE_PASSWORD: Doodletoot1
+  SNOWFLAKE_ACCOUNT: redpill
+  SNOWFLAKE_WAREHOUSE: DEMO_WH
+  SNOWFLAKE_DATABASE: snowflake_101
+  SNOWFLAKE_SCHEMA: dbt_tbrannan
+  error_logging_enabled: true
+  PYTHON_EXECUTABLE: /usr/bin/python3
+
 
 models:
   +persist_docs:
@@ -33,6 +50,8 @@ models:
         columns: true
 
   staging:
+    +post-hook:
+      - "{{ create_error_log_table(target.schema) }}"
     +schema: staging
     +materialized: table
 
@@ -43,3 +62,7 @@ models:
   reporting:
     +schema: reporting_star
     +materialized: table
+
+
+on-run-end:
+  - "{{ run_external_script('python_scripts/send_email_notification.py') }}"
