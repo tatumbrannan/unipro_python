@@ -62,7 +62,5 @@ models:
   reporting:
     +schema: reporting_star
     +materialized: table
-
-
-on-run-end:
-  - "{{ run_external_script('python_scripts/send_email_notification.py') }}"
+run-end:
+  - "{{ run_external_script('run_python_script.sh') }}"
