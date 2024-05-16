@@ -26,6 +26,22 @@ clean-targets:         # directories to be removed by `dbt clean`
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
 vars:
   schema_name: dbt_tbrannan
+  SMTP_SERVER: smtp.gmail.com
+  SENDER_EMAIL: tatum.brannan@redpillanalytics.com
+  RECIPIENT_EMAIL: tatum.brannan@redpillanalytics.com
+  SMTP_PORT: 587
+  SMTP_USERNAME: tatum.brannan
+  SMTP_PASSWORD: Doodletoot1
+  SNOWFLAKE_USERNAME: tatumbrannan
+  SNOWFLAKE_PASSWORD: Doodletoot1
+  SNOWFLAKE_ACCOUNT: redpill
+  SNOWFLAKE_WAREHOUSE: DEMO_WH
+  SNOWFLAKE_DATABASE: snowflake_101
+  SNOWFLAKE_SCHEMA: dbt_tbrannan
+  error_logging_enabled: true
+  PYTHON_EXECUTABLE: /usr/bin/python3
+
+
 
 models:
   +persist_docs:
@@ -43,3 +59,6 @@ models:
   reporting:
     +schema: reporting_star
     +materialized: table
+
+on-run-end:
+  - "{{ run_external_script('run_python_script.sh') }}"
