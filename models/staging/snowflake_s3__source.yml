@@ -16,3 +16,10 @@ sources:
       - name: supplier_dimension
       - name: history
         description: "PO history data sourced from UNIPRO system XXXXXXX.  \n Legacy Source File Name: CPP2211  \n Estimated Number of Rows: 1 million per month, up to 3 years"
+    
+  - name: snow_brannan
+    description: "this data comes from redpill snowflake account for testing purposes"
+    database: snowflake_101
+    schema: dbt_tbrannan
+    tables:
+      - name: error_log

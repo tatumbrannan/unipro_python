@@ -1,4 +1,37 @@
+version: 2
+
 models:
+  - name: error_log
+    description: "A table to log errors from dbt runs"
+    columns:
+      - name: error_timestamp
+        description: "Timestamp when the error occurred"
+        tests:
+          - not_null
+
+      - name: run_started_at
+        description: "Timestamp when the dbt run started"
+        tests:
+          - not_null
+
+      - name: invocation_id
+        description: "Unique identifier for the dbt invocation"
+        tests:
+          - not_null
+          
+      - name: error_message
+        description: "The error message"
+        tests:
+          - not_null
+
+  - name: error_log_reference
+    columns:
+      - name: timestamp
+        tests:
+          - not_null
+    tests:
+      - unique
+
   - name: cat_group_dimension
     columns:
       - name: approved_record_flag
