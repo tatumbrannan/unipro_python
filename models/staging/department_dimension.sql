@@ -1,6 +1,6 @@
 WITH raw_data AS (
     SELECT
-        star
+        *
     FROM
         {{ source('snowflake_s3','department_dimension') }}
 )
