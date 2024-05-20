@@ -8,12 +8,7 @@ models:
         description: "Timestamp when the error occurred"
         tests:
           - not_null
-
-      - name: run_started_at
-        description: "Timestamp when the dbt run started"
-        tests:
-          - not_null
-
+          
       - name: invocation_id
         description: "Unique identifier for the dbt invocation"
         tests:

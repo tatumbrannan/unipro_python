@@ -1,58 +1,51 @@
-import snowflake.connector
 import smtplib
 from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
-from dynaconf import settings
-import logging
+from dbt.cli.main import dbtRunner, dbtRunnerResult
 
-# Configure logging
-logging.basicConfig(level=logging.INFO, filename='send_email_notification.log')
+# Initialize dbtRunner
+dbt = dbtRunner()
 
-# Load variables from Dynaconf
-smtp_server = settings.get('SMTP_SERVER')
-smtp_port = settings.get('SMTP_PORT')
-smtp_username = settings.get('SMTP_USERNAME')
-smtp_password = settings.get('SMTP_PASSWORD')
-sender_email = settings.get('SENDER_EMAIL')
-recipient_email = settings.get('RECIPIENT_EMAIL')
+# Create CLI args for dbt run
+cli_args = ["run"]
 
 try:
-    # Connect to Snowflake and fetch error log details
-    conn = snowflake.connector.connect(
-        user=settings.get('SNOWFLAKE_USERNAME'),  
-        password=settings.get('SNOWFLAKE_PASSWORD'),  
-        account=settings.get('SNOWFLAKE_ACCOUNT'),  
-        warehouse=settings.get('SNOWFLAKE_WAREHOUSE'),  
-        database=settings.get('SNOWFLAKE_DATABASE'),  
-        schema=settings.get('SNOWFLAKE_SCHEMA')
-    )
+    # Run dbt command
+    res = dbt.invoke(cli_args)
 
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM error_log")
-    error_log_data = cursor.fetchall()
+    # Check if dbt job failed
+    if any(r.status == "error" for r in res.result):
+        # Extract relevant information about the failure
+        error_tables = [r.node.name for r in res.result if r.status == "error"]
+        error_message = "DBT job failed. Error tables: {}".format(", ".join(error_tables))
+        run_started_at = "{{ run_started_at }}"
+        invocation_id = "{{ invocation_id }}"
+        exception = "Error details: " + ", ".join(error_tables)
 
-    # Construct the email
-    message = MIMEMultipart()
-    message["From"] = sender_email
-    message["To"] = recipient_email
-    message["Subject"] = "DBT Job Failure Notification"
+        # Send email notification
+        sender_email = "your_email@example.com"
+        receiver_email = "recipient@example.com"
+        smtp_server = "smtp.example.com"
+        smtp_port = 587
+        smtp_username = "your_smtp_username"
+        smtp_password = "your_smtp_password"
 
-    body = "The DBT job has failed. Here are the details from the error_log table:\n\n"
-    for row in error_log_data:
-        body += str(row) + "\n"
+        msg = MIMEText(error_message)
+        msg["Subject"] = "DBT Job Failure Notification"
+        msg["From"] = sender_email
+        msg["To"] = receiver_email
 
-    message.attach(MIMEText(body, "plain"))
+        with smtplib.SMTP(smtp_server, smtp_port) as server:
+            server.starttls()
+            server.login(smtp_username, smtp_password)
+            server.send_message(msg)
 
-    # Send the email
-    with smtplib.SMTP(smtp_server, smtp_port) as server:
-        server.starttls()
-        server.login(smtp_username, smtp_password)
-        server.sendmail(sender_email, recipient_email, message.as_string())
-        logging.info("Email sent successfully")
+        print("Email notification sent.")
+
+        # Log error in dbt
+        dbt.cli.main.dbtRunner().invoke(["run-operation", "send_email_notification",
+                                         "--args", f"'email_subject': 'DBT Job Failure Notification', 'email_body': '{error_message}', 'run_started_at': '{run_started_at}', 'invocation_id': '{invocation_id}', 'exception': '{exception}'"])
+    else:
+        print("DBT job completed successfully.")
 
 except Exception as e:
-    logging.error(f"Error: {e}")
-
-finally:
-    if 'conn' in locals():
-        conn.close()
+    print(f"An error occurred: {e}")

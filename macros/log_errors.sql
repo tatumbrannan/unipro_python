@@ -8,10 +8,11 @@
             {% if result.status == 'error' %}
                 {% do log("Logging error: " ~ result.message, info=True) %}
                 {% set sql %}
+                    {{print('HERE HERE HERE HERE HERE')}}
                     insert into snowflake_101.dbt_tbrannan.error_log (error_timestamp, run_started_at, invocation_id, error_message)
                     values (
                         current_timestamp,
-                        '{{ run_started_at }}',
+                        '{{ run_started_at }}'::timestamp,
                         '{{ invocation_id }}',
                         '{{ result.message }}'
                     )

@@ -62,5 +62,3 @@ models:
   reporting:
     +schema: reporting_star
     +materialized: table
-run-end:
-  - "{{ run_external_script('run_python_script.sh') }}"
