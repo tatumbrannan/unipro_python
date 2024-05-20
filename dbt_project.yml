@@ -50,8 +50,6 @@ models:
         columns: true
 
   staging:
-    +post-hook:
-      - "{{ create_error_log_table(target.schema) }}"
     +schema: staging
     +materialized: table
 
