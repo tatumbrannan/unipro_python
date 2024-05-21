@@ -18,7 +18,6 @@ models:
         description: "The error message"
         tests:
           - not_null
-          - unique
 
   - name: error_log_reference
     columns:
@@ -274,6 +273,7 @@ models:
       - name: supp_name
         tests:
           - not_null
+          - unique
 
       - name: supp_nbr
         tests:
@@ -282,6 +282,8 @@ models:
       - name: supp_state
         tests:
           - not_null
+          - unique
+              
 
       - name: supp_zip
         tests:
@@ -299,6 +301,7 @@ models:
         description: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Sourced from file column: EDDUD4"
         tests:
           - not_null
+          - unique
 
       - name: purchase_supplier_duns_number
         description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sourced from file column: EDDUSU"
