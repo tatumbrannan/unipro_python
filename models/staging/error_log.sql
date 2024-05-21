@@ -1,16 +1,14 @@
 -- models/error_log.sql
 {{ config(
-    materialized='incremental',
-    unique_key='invocation_id'
+    materialized='table'
 ) }}
 
-with new_data as (
+with initial_data as (
     select
-        current_timestamp as error_timestamp,
-        '{{ run_started_at }}'::timestamp as run_started_at,
-        '{{ invocation_id }}' as invocation_id,
-        '{{ exception }}' as error_message
+        null::timestamp as error_timestamp,
+        null::varchar as invocation_id,
+        null::varchar as error_message
     where 1=0
 )
 
-select * from new_data
+select * from initial_data

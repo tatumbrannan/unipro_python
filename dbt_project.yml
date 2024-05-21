@@ -50,8 +50,6 @@ models:
         columns: true
 
   staging:
-    +post-hook:
-      - "{{ create_error_log_table(target.schema) }}"
     +schema: staging
     +materialized: table
 
@@ -62,5 +60,3 @@ models:
   reporting:
     +schema: reporting_star
     +materialized: table
-run-end:
-  - "{{ run_external_script('run_python_script.sh') }}"
