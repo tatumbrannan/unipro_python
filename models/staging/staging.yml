@@ -18,6 +18,7 @@ models:
         description: "The error message"
         tests:
           - not_null
+          - unique
 
   - name: error_log_reference
     columns:
